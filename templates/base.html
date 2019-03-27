@@ -1,0 +1,151 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Black &amp; White</title>
+
+    <!-- meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- css -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{static_url('css/pace.css')}}">
+    <link rel="stylesheet" href="{{static_url('css/custom.css')}}">
+    <link rel="stylesheet" href="{{static_url('css/highlights/github.css')}}">
+
+    <!-- js -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{{static_url('js/pace.min.js')}}"></script>
+    <script src="{{static_url('js/modernizr.custom.js')}}"></script>
+</head>
+
+<body>
+<div class="container">
+    <header id="site-header">
+        <div class="row">
+            <div class="col-md-4 col-sm-5 col-xs-8">
+                <div class="logo">
+                    <h1><a href="#"><b>Black</b> &amp; White</a></h1>
+                </div>
+            </div><!-- col-md-4 -->
+            <div class="col-md-8 col-sm-7 col-xs-4">
+                <nav class="main-nav" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" id="trigger-overlay" class="navbar-toggle">
+                            <span class="ion-navicon"></span>
+                        </button>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="cl-effect-11"><a href="#" data-hover="首页">首页</a></li>
+                            <li class="cl-effect-11"><a href="#" data-hover="博客">博客</a></li>
+                            <li class="cl-effect-11"><a href="#" data-hover="关于">关于</a></li>
+                            <li class="cl-effect-11"><a href="#" data-hover="联系">联系</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </nav>
+                <div id="header-search-box">
+                    <a id="search-menu" href="#"><span id="search-icon" class="ion-ios-search-strong"></span></a>
+                    <div id="search-form" class="search-form">
+                        <form role="search" method="get" id="searchform" action="#">
+                            <input type="search" placeholder="搜索" required>
+                            <button type="submit"><span class="ion-ios-search-strong"></span></button>
+                        </form>
+                    </div>
+                </div>
+            </div><!-- col-md-8 -->
+        </div>
+    </header>
+</div>
+
+
+<div class="content-body">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-8">
+                {% block main %}
+                {% end %}
+            </main>
+            <aside class="col-md-4">
+                {% block toc %}
+                放大发放
+                {% end %}
+                <div class="widget widget-recent-posts">
+                    <h3 class="widget-title">最新文章</h3>
+                    <ul>
+                        {% for post1 in post_article %}
+                            <li>
+                                <a href="/detail/{{post1.id}}">{{ post1.title }}</a>
+                            </li>
+                        {% end %}
+                    </ul>
+                </div>
+
+                <div class="widget widget-archives">
+                    <h3 class="widget-title">归档</h3>
+                    <ul>
+                        {% for post2 in post_archives %}
+                            <li>
+                                <a href="#">{{ post2[0] }}
+                                    年 {{ post2[1] }} 月</a>
+                            </li>
+                        {% end %}
+                    </ul>
+                </div>
+
+                <div class="widget widget-category">
+                    <h3 class="widget-title">分类</h3>
+                    <ul>
+                            <li>
+                                <a href="#"> <span
+                                        class="post-count">(13)</span></a>
+                            </li>
+
+                    </ul>
+                </div>
+
+                <div class="widget widget-tag-cloud">
+                    <h3 class="widget-title">标签云</h3>
+                    <ul>
+                        <li>
+                            <a href="#">Django</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </aside>
+        </div>
+    </div>
+</div>
+<footer id="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="copyright"><a href="" target="_blank" title="模板之家"></a>
+                    -<a href="" title="" target="_blank"></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Mobile Menu -->
+<div class="overlay overlay-hugeinc">
+    <button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
+    <nav>
+        <ul>
+            <li><a href="">首页</a></li>
+            <li><a href="#">博客</a></li>
+            <li><a href="#">关于</a></li>
+            <li><a href="#">联系</a></li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑博客</title>
+</head>
+<body>
+{% block main %}
+我是edit
+<form action='/edit' method='post'>
+	<div >
+		<label >标题</label>
+		<input type='text' name='title'  placeholder='请输入标题'/>
+	</div>
+	<div >
+		<label>正文</label>
+		<textarea rows='20' type='text' name='blog' placeholder='请输入文章正文'></textarea>
+	</div>
+    <input type="submit" name="" id="">
+</form>
+
+{% end %}
+</body>
+</html>
+<div class="widget widget-recent-posts">
+                    <h3 class="widget-title">最新文章</h3>
+                    <ul>
+                        {% for post1 in post_article %}
+                            <li>
+                                <a href="/detail/{{post1.id}}">{{ post1.title }}</a>
+                            </li>
+                        {% end %}
+                    </ul>
+                </div>
+
+                <div class="widget widget-archives">
+                    <h3 class="widget-title">归档</h3>
+                    <ul>
+                        {% for post2 in post_archives %}
+                            <li>
+                                <a href="#">{{ post2[0] }}
+                                    年 {{ post2[1] }} 月</a>
+                            </li>
+                        {% end %}
+                    </ul>
+                </div>
+
+                <div class="widget widget-category">
+                    <h3 class="widget-title">分类</h3>
+                    <ul>
+                            <li>
+                                <a href="#"> <span
+                                        class="post-count">(13)</span></a>
+                            </li>
+
+                    </ul>
+                </div>
+
+                <div class="widget widget-tag-cloud">
+                    <h3 class="widget-title">标签云</h3>
+                    <ul>
+                        <li>
+                            <a href="#">Django</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+            </aside>
+        </div>
+    </div>
+</div>
+<footer id="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="copyright"><a href=""
+                                                        target="_blank" title="模板之家"></a>
+                    - 由<a href="" title="网页模板" target="_blank"></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Mobile Menu -->
+<div class="overlay overlay-hugeinc">
+    <button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
+    <nav>
+        <ul>
+            <li><a href="">首页</a></li>
+            <li><a href="#">博客</a></li>
+            <li><a href="#">关于</a></li>
+            <li><a href="#">联系</a></li>
+        </ul>
+    </nav>
+</div>

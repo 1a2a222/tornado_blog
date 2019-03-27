@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<article class="post post-{{ post.id }}">
+        <header class="entry-header">
+            <h1 class="entry-title">{{ post.title }}</h1>
+            <div class="entry-meta">
+                <span class="post-category">id
+                    <a href="">{{ post.category_id }}</a></span>
+                <span class="post-date"><a href="#"><time class="entry-date"
+                                                          datetime="{{ post.created_time }}">{{ post.created_time }}</time></a></span>
+                <span class="post-author"><a href="#">{{ post.author }}</a></span>
+                <span class="comments-link">
+                    <a href="#comment-area"> {{ length_comment}}评论</a></span>
+                <span class="views-count"><a href="#">588 阅读</a></span>
+            </div>
+        </header>
+        <div class="entry-content clearfix">
+            {{ post.body }}
+        </div>
+    </article>
+<section class="comment-area" id="comment-area">
+        <h3>发表评论</h3>
+        <form action="/detail/{{post.id}}" method="post" class="comment-form" enctype="multipart/form-data">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label >名字：</label>
+                    <input type="text" name="name" >
+                </div>
+                <div class="col-md-12">
+                    <label >评论：</label>
+                    <input type="text" name="comment" >
+                    <input type="file" name="newimg" onchange="UploadImage(this)">
+                    <iframe src="" frameborder="0" name="upload_img_iframe" id="upload_img_iframe" class="hide"></iframe>
+                    <button type="submit" class="comment-btn">发表</button>
+                </div>
+            </div>    <!-- row -->
+        </form>
+        <div class="comment-list-panel">
+            <h3>评论列表，共 <span>{{ length_comment}}</span> 条评论</h3>
+            <ul class="comment-list list-unstyled">
+                {% for comment in comment_list %}
+                    <li class="comment-item">
+                        <span class="nickname">{{ comment.name }}</span>
+                        <time class="submit-date"
+                              datetime="">{{comment.created_time }}</time>
+
+                        <div class="text">
+                                {{comment.text}}
+                        </div>
+                    </li>
+                {% end %}
+                <li>jfkdlsa</li>
+            </ul>
+        </div>
+    </section>
+{% end %}
+
+
+
+
+
+<!-- Mobile Menu -->
+<div class="overlay overlay-hugeinc">
+    <button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
+    <nav>
+        <ul>
+            <li><a href="">首页</a></li>
+            <li><a href="#">博客</a></li>
+            <li><a href="#">关于</a></li>
+            <li><a href="#">联系</a></li>
+        </ul>
+    </nav>
+</div>
+
+<script>
+    function UploadImage(ths){
+    //如果上传成功（用完这个通道）就执行UploadImageComplete函数
+    document.getElementById('upload_img_iframe').onload = UploadImageComplete;
+    //提交请求
+    document.getElementById('upload_img_form').target = 'upload_img_iframe';
+    document.getElementById('upload_img_form').submit();
+}
+
+function UploadImageComplete(){
+    var origin = $("#upload_img_iframe").contents().find("body").text();
+    //获取上传成功的内容 {'status': True, 'path': file_path}
+    var obj = JSON.parse(origin);
+    if(obj.status){
+        //创建img标签，通过src属性直接把图片展示在页面上
+        var img = document.createElement('img');
+        img.src = obj.path;
+        $("#upload_img_form").append(img);
+        //隐藏上传图片样式
+        $('#fakeFile').addClass('hide');
+        //显示重新上传样式
+        $('#reUploadImage').removeClass('hide');
+    }
+}
+
+function ReUploadImage(ths){
+    $(ths).addClass('hide');
+    $("#upload_img_form").find('img').remove();
+    $('#fakeFile').removeClass('hide');
+}
+</script>

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<!--我是index-->
+{% for post in post_list %}
+    <article class="post post-{{ post.id }}">
+        <header class="entry-header">
+            <h1 class="entry-title">
+                    <a href="/detail/{{post.id}}">{{ post.title }}</a>
+            </h1>
+            <div class="entry-meta">
+                    <span class="post-category">
+                        <a href=""> {{ post.category_id }} </a></span>
+                    <span class="post-date"><a href="#"><time class="entry-date"
+                                                              datetime="{{ post.created_time }}">{{ post.created_time }}</time></a></span>
+                    <span class="post-author"><a href="#">{{ post.author }}</a></span>
+                    <span class="comments-link">
+                        <a href="#comment-area">评论</a></span>
+                    <span class="views-count"><a href="">阅读</a></span>
+            </div>
+{% end %}
+{% end %}
+
+            <div class="widget widget-recent-posts">
+                    <h3 class="widget-title">最新文章</h3>
+                    <ul>
+                        {% for post1 in post_article %}
+                            <li>
+                                <a href="/detail/{{post1.id}}">{{ post1.title }}</a>
+                            </li>
+                        {% end %}
+                    </ul>
+                </div>
+
+                <div class="widget widget-archives">
+                    <h3 class="widget-title">归档</h3>
+                    <ul>
+                        {% for post2 in post_archives %}
+                            <li>
+                                <a href="#">{{ post2[0] }}
+                                    年 {{ post2[1] }} 月</a>
+                            </li>
+                        {% end %}
+                    </ul>
+                </div>
+
+                <div class="widget widget-category">
+                    <h3 class="widget-title">分类</h3>
+                    <ul>
+                            <li>
+                                <a href="#"> <span
+                                        class="post-count">(13)</span></a>
+                            </li>
+
+                    </ul>
+                </div>
+
+                <div class="widget widget-tag-cloud">
+                    <h3 class="widget-title">标签云</h3>
+                    <ul>
+                        <li>
+                            <a href="#">Django</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+<footer id="site-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="copyright"><a href=""
+                                                        target="_blank" title="模板之家"></a>
+                    <a href="" title="网页模板" target="_blank"></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Mobile Menu -->
+<div class="overlay overlay-hugeinc">
+    <button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
+    <nav>
+        <ul>
+            <li><a href="">首页</a></li>
+            <li><a href="#">博客</a></li>
+            <li><a href="#">关于</a></li>
+            <li><a href="#">联系</a></li>
+        </ul>
+    </nav>
+</div>

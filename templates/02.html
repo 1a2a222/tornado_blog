@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for url in urllist %}
+    {{ url }}<br>
+    <a href="{{ url[0] }}" target="_blank">{{ url[1] }}</a> <br>
+{% end %}
+</body>
+</html>
